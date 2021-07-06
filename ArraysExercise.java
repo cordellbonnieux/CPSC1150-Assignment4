@@ -20,6 +20,9 @@ public class ArraysExercise {
         // Question 5
         System.out.println("The index of the largest number is: " + findMaxIndex(arr));
 
+        // Question 6
+        System.out.println("The index of the smallest number is: " + findMinIndex(arr));
+
     }
     /** 
      * Question 1
@@ -41,7 +44,11 @@ public class ArraysExercise {
 
             int pos = i - 1;
 
-            array[pos] = i;
+            // fill up with incremented numbers (starting at 1):
+            //array[pos] = i;
+
+            // fill up with random numbers:
+            array[pos] = (int)(1 + Math.random() * 100);
         }
 
         return array;
@@ -139,6 +146,27 @@ public class ArraysExercise {
         for (int i = 0; i < array.length; i++) {
             
             if (array[i] == largest)
+                index = i;
+        }
+
+        return index;
+
+    }
+
+    /**
+     * Question 6
+     * Write a method named findMinIndex that given an array of integers finds and
+     * returns the index of minimum value in the array.
+     * @param array
+     * @return
+     */
+    public static int findMinIndex(int[] array) {
+
+        int index = array[0], smallest = findMin(array);
+
+        for (int i = 0; i < array.length; i++) {
+            
+            if (array[i] == smallest)
                 index = i;
         }
 
