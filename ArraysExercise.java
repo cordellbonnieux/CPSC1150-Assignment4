@@ -58,27 +58,22 @@ public class ArraysExercise {
 
             return size;
     }
-
+    /**
+     * Question 2
+     * @param array
+     */
     public static void printArray(int[] array) {
 
         int length = array.length, i = 0;
 
-        while (i < (length / 5) * 5) {
-
-            System.out.printf("%-3d %-3d %-3d %-3d %-3d \n", 
-                array[i++], array[i++], array[i++],
-                array[i++], array[i++]);
+        while (i < length ) {
+            // print formatted rows of 5
+            System.out.printf("%-4s %-4s %-4s %-4s %-4s \n", 
+                ((i < length) ? String.valueOf(array[i++]) : " "),
+                ((i < length) ? String.valueOf(array[i++]) : " "),
+                ((i < length) ? String.valueOf(array[i++]) : " "),
+                ((i < length) ? String.valueOf(array[i++]) : " "),
+                ((i < length) ? String.valueOf(array[i++]) : " "));
         }
-
-        if (array.length % 5 != 0) {
-
-            int pos = length % 5;
-            
-            for (int y = (length - pos); y < length; y++) {
-                
-                System.out.printf("%-3d", array[y]);
-            }
-        }
-
     }
 }
