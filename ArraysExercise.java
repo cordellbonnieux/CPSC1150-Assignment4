@@ -5,8 +5,12 @@ public class ArraysExercise {
         // create scanner obj
         Scanner input = new Scanner(System.in);
 
-        // call question 1
+        // Question 1
         int[] arr = getArray(input);
+
+        // Question 2
+        printArray(arr);
+
         System.out.println("ok!");
 
         
@@ -35,7 +39,11 @@ public class ArraysExercise {
 
         return array;
     }
-
+    /**
+     * Question 1
+     * @param input
+     * @return
+     */
     public static int getSize(Scanner input) {
 
             // prompt user
@@ -49,5 +57,28 @@ public class ArraysExercise {
                 return getSize(input);
 
             return size;
+    }
+
+    public static void printArray(int[] array) {
+
+        int length = array.length, i = 0;
+
+        while (i < (length / 5) * 5) {
+
+            System.out.printf("%-3d %-3d %-3d %-3d %-3d \n", 
+                array[i++], array[i++], array[i++],
+                array[i++], array[i++]);
+        }
+
+        if (array.length % 5 != 0) {
+
+            int pos = length % 5;
+            
+            for (int y = (length - pos); y < length; y++) {
+                
+                System.out.printf("%-3d", array[y]);
+            }
+        }
+
     }
 }
