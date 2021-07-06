@@ -23,6 +23,9 @@ public class ArraysExercise {
         // Question 6
         System.out.println("The index of the smallest number is: " + findMinIndex(arr));
 
+        // Question 7
+        System.out.println("Is this array sorted in ascending order? " + isSortedAscend(arr));
+
     }
     /** 
      * Question 1
@@ -172,5 +175,22 @@ public class ArraysExercise {
 
         return index;
 
+    }
+    /**
+     * Question 7
+     * Write a method named isSortedAscend that given an array of integers, it checks
+     * whether array is sorted in ascending order, and returns true or false correspondingly.
+     * @param array
+     * @return
+     */
+    public static Boolean isSortedAscend(int[] array) {
+
+        for (int i = 0; i < array.length; i++) {
+            if (i > 0) 
+                if (array[i] < array[i-1])
+                    return false;
+        }
+
+        return true;
     }
 }
