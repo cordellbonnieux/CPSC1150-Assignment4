@@ -17,6 +17,8 @@ public class ArraysExercise {
         // Question 4
         System.out.println("The smallest number is: " + findMin(arr));
         
+        // Question 5
+        System.out.println("The index of the largest number is: " + findMaxIndex(arr));
 
     }
     /** 
@@ -121,5 +123,26 @@ public class ArraysExercise {
         }
 
         return smallest;
+    }
+
+    /**
+     * Question 5
+     * Write a method named findMaxIndex that given an array of integers finds and
+     * returns the index of maximum value in the array.
+     * @param array
+     * @return
+     */
+    public static int findMaxIndex(int[] array) {
+
+        int index = array[0], largest = findMax(array);
+
+        for (int i = 0; i < array.length; i++) {
+            
+            if (array[i] == largest)
+                index = i;
+        }
+
+        return index;
+
     }
 }
