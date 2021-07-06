@@ -12,15 +12,17 @@ public class ArraysExercise {
         printArray(arr);
 
         // Question 3
-        System.out.println("max is " + findMax(arr));
+        System.out.println("The largest number is: " + findMax(arr));
 
         // Question 4
-
+        System.out.println("The smallest number is: " + findMin(arr));
         
 
     }
     /** 
-     * Question 1 - getArray
+     * Question 1
+     * Write a method named getArray that asks user to input the array size n, then initializes
+     * an array of n integers from user input and returns the array.
      * @param input
      * @return
      */
@@ -63,6 +65,8 @@ public class ArraysExercise {
     }
     /**
      * Question 2
+     * Write a method named printArray that given an array of integers, prints the array
+     * in a tabular format with 5 number in each line.
      * @param array
      */
     public static void printArray(int[] array) {
@@ -82,19 +86,40 @@ public class ArraysExercise {
     }
     /**
      * Question 3
+     * Write a method named findMax that given an array of integers finds and returns the
+     * maximum value in the array.
      * @param array
      * @return
      */
     public static int findMax(int[] array) {
 
-        int largest = 0;
+        int largest = array[0];
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             if (array[i] > largest)
                 largest = array[i];
         }
 
         return largest;
 
+    }
+
+    /**
+     * Question 4
+     * Write a method named findMin that given an array of integers finds and returns the
+     * minimum value in the array.
+     * @param array
+     * @return
+     */
+    public static int findMin(int[] array) {
+
+        int smallest = array[0];
+
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < smallest)
+                smallest = array[i];
+        }
+
+        return smallest;
     }
 }
