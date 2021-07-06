@@ -9,6 +9,7 @@ public class ArraysExercise {
         int[] arr = getArray(input);
 
         // Question 2
+        System.out.println("Here is your array");
         printArray(arr);
 
         // Question 3
@@ -28,6 +29,11 @@ public class ArraysExercise {
 
         // Question 8
         System.out.println("Is this array sorted in descending order? " + isSortedDescend(arr));
+
+        //Question 9
+        arr = swapNeighbor(arr);
+        System.out.println("\n" + "Swap every neighbour in the array");
+        printArray(arr);
 
     }
     /** 
@@ -98,6 +104,8 @@ public class ArraysExercise {
                 ((i < array.length) ? String.valueOf(array[i++]) : " "),
                 ((i < array.length) ? String.valueOf(array[i++]) : " "));
         }
+
+        System.println();
     }
     /**
      * Question 3
@@ -214,5 +222,30 @@ public class ArraysExercise {
         }
 
         return true;
+    }
+    /**
+     * Question 9
+     * Write a method named swapNeighbor that given an array, it compares every two
+     * neighbor numbers in the array (eg. A[i] and A[i+1]) and swaps them if A[i] is more than A[i+1].
+     * It finally passes the new changes to the caller method. This method should be void method.
+     * For example, for the given array {12, 9, 15, 7, 3}, as the result of calling swapNeighbor, the
+     * array must be changed to {9, 12, 7, 3, 15}.
+     * @param array
+     */
+    public static int[] swapNeighbor(int[] array) {
+
+        for (int i = 0; i < array.length - 1; i++) {
+
+            if (array[i] > array[i+1]) {
+
+                int temp = array[i];
+
+                array[i] = array[i+1];
+
+                array[i+1] = temp;
+            } 
+        }
+
+        return array;
     }
 }
