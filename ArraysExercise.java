@@ -26,6 +26,9 @@ public class ArraysExercise {
         // Question 7
         System.out.println("Is this array sorted in ascending order? " + isSortedAscend(arr));
 
+        // Question 8
+        System.out.println("Is this array sorted in descending order? " + isSortedDescend(arr));
+
     }
     /** 
      * Question 1
@@ -50,7 +53,7 @@ public class ArraysExercise {
             // fill up with incremented numbers (starting at 1):
             //array[pos] = i;
 
-            // fill up with random numbers:
+            // fill up with random numbers (between 1 and 100):
             array[pos] = (int)(1 + Math.random() * 100);
         }
 
@@ -176,6 +179,7 @@ public class ArraysExercise {
         return index;
 
     }
+
     /**
      * Question 7
      * Write a method named isSortedAscend that given an array of integers, it checks
@@ -188,6 +192,24 @@ public class ArraysExercise {
         for (int i = 0; i < array.length; i++) {
             if (i > 0) 
                 if (array[i] < array[i-1])
+                    return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Question 8
+     * Write a method named isSortedDescend that given an array of integers, it checks
+     * whether array is sorted in descending order, and returns true or false correspondingly.
+     * @param array
+     * @return
+     */
+    public static Boolean isSortedDescend(int[] array) {
+
+        for (int i = 0; i < array.length; i++) {
+            if (i > 0) 
+                if (array[i] > array[i-1])
                     return false;
         }
 
