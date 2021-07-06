@@ -11,7 +11,10 @@ public class ArraysExercise {
         // Question 2
         printArray(arr);
 
-        System.out.println("ok!");
+        // Question 3
+        System.out.println("max is " + findMax(arr));
+
+        // Question 4
 
         
 
@@ -64,16 +67,34 @@ public class ArraysExercise {
      */
     public static void printArray(int[] array) {
 
-        int length = array.length, i = 0;
+        int i = 0;
 
-        while (i < length ) {
+        while (i < array.length ) {
+            
             // print formatted rows of 5
             System.out.printf("%-4s %-4s %-4s %-4s %-4s \n", 
-                ((i < length) ? String.valueOf(array[i++]) : " "),
-                ((i < length) ? String.valueOf(array[i++]) : " "),
-                ((i < length) ? String.valueOf(array[i++]) : " "),
-                ((i < length) ? String.valueOf(array[i++]) : " "),
-                ((i < length) ? String.valueOf(array[i++]) : " "));
+                ((i < array.length) ? String.valueOf(array[i++]) : " "),
+                ((i < array.length) ? String.valueOf(array[i++]) : " "),
+                ((i < array.length) ? String.valueOf(array[i++]) : " "),
+                ((i < array.length) ? String.valueOf(array[i++]) : " "),
+                ((i < array.length) ? String.valueOf(array[i++]) : " "));
         }
+    }
+    /**
+     * Question 3
+     * @param array
+     * @return
+     */
+    public static int findMax(int[] array) {
+
+        int largest = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > largest)
+                largest = array[i];
+        }
+
+        return largest;
+
     }
 }
