@@ -9,7 +9,7 @@ public class ArraysExercise {
         int[] arr = getArray(input);
 
         // Question 2
-        System.out.println("Here is your array");
+        System.out.println("Here is your array...");
         printArray(arr);
 
         // Question 3
@@ -30,10 +30,31 @@ public class ArraysExercise {
         // Question 8
         System.out.println("Is this array sorted in descending order? " + isSortedDescend(arr));
 
-        //Question 9
+        // Question 9
         arr = swapNeighbor(arr);
-        System.out.println("\n" + "Swap every neighbour in the array");
+        System.out.println("\n" + "Swap every neighbour in the array...");
         printArray(arr);
+
+        // Question 10
+        System.out.println("Take two sorted arrays and merge sort them...");
+
+        // For this question I provided two fixed arrays, and the option to comment them out
+        // in favour of using two randomly generated ones.
+
+        int[] arr1 = {2, 4, 6, 8, 10, 12, 14, 16},
+              arr2 = {3, 6, 9, 12, 15, 18, 21, 24};
+
+        // generate 2 random arrays
+        //int[] arr1 = getArray(input),
+        //      arr2 = getArray(input);
+
+        // the randomly generated arrays are very unlikely to pass this test.
+        if (isSortedAscend(arr1) && isSortedAscend(arr2))
+            printArray(merge(arr1, arr2));
+        else
+            System.out.println("Cannot merge unsorted arrays.");
+            
+             
 
     }
     /** 
@@ -45,7 +66,7 @@ public class ArraysExercise {
      */
     public static int[] getArray(Scanner input) {
 
-        //
+        // get size
         int size = getSize(input);
         
         // create an array that counts up to size
@@ -105,7 +126,7 @@ public class ArraysExercise {
                 ((i < array.length) ? String.valueOf(array[i++]) : " "));
         }
 
-        System.println();
+        System.out.println();
     }
     /**
      * Question 3
@@ -247,5 +268,55 @@ public class ArraysExercise {
         }
 
         return array;
+    }
+    /**
+     * Question 10
+     * Write a method named merge that given two arrays sorted in ascending order, it
+     * merges them into one sorted array in ascending order, and returns the merged array.
+     * For example, if the given arrays are {2, 6, 9} and {-1, 5, 11, 12}, then the merged array must be
+     * {-1, 2, 5, 6, 9, 11, 12}. If the given arrays are not sorted, then the merged array should not be
+     * sorted either.
+     * @param array1
+     * @param array2
+     * @return
+     */
+    public static int[] merge(int[] a, int[] b) {
+        
+            int[] merged = new int[a.length + b.length];
+            int countA = 0, countB = 0, countM = 0;
+        
+        while (countA < a.length && countB < b.length) {
+
+            if (a[countA] <= b[countB]) {
+
+                merged[countM] = a[countA];
+                countA++;
+
+            } else {
+
+                merged[countM] = b[countB];
+                countB++;
+
+            }
+
+            countM++;
+        }
+
+        if (countA < a.length) {
+
+            for (int x = countA; x < a.length; x++) {
+                merged[countM] = a[x];
+                countM++;
+            }
+
+        } else {
+
+            for (int x = countB; x < b.length; x++) {
+                merged[countM] = b[x];
+                countM++;
+            }
+        }
+ 
+        return merged;
     }
 }
