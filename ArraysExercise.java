@@ -1,4 +1,12 @@
 import java.util.*;
+/**
+ * CPSC 1150 W01
+ * Assignment 4 part 1
+ * Intructor: Dr. Bita Shadgar
+ * @author Cordell Bonnieux
+ * @date 07/06/2021
+ * Description: Various tasks involving arrays. 
+ */
 public class ArraysExercise {
     public static void main(String[] args) {
 
@@ -48,13 +56,13 @@ public class ArraysExercise {
         //int[] arr1 = getArray(input),
         //      arr2 = getArray(input);
 
+        input.close();
+
         // the randomly generated arrays are very unlikely to pass this test.
         if (isSortedAscend(arr1) && isSortedAscend(arr2))
             printArray(merge(arr1, arr2));
         else
             System.out.println("Cannot merge unsorted arrays.");
-            
-             
 
     }
     /** 
