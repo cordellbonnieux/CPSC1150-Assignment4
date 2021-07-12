@@ -10,11 +10,8 @@ import java.util.*;
 public class ArraysExercise {
     public static void main(String[] args) {
 
-        // create scanner obj
-        Scanner input = new Scanner(System.in);
-
         // Question 1
-        int[] arr = getArray(input);
+        int[] arr = getArray();
 
         // Question 2
         System.out.println("Here is your array...");
@@ -39,24 +36,23 @@ public class ArraysExercise {
         System.out.println("Is this array sorted in descending order? " + isSortedDescend(arr));
 
         // Question 9
-        arr = swapNeighbor(arr);
+        arr = swapNeighbour(arr);
         System.out.println("\n" + "Swap every neighbour in the array...");
         printArray(arr);
 
         // Question 10
         System.out.println("Take two sorted arrays and merge sort them...");
 
-        // For this question I provided two fixed arrays, and the option to comment them out
-        // in favour of using two randomly generated ones.
+        // For this question I provided two generated arrays, and the option to comment them out
+        // in favour of using two fixed ones.
 
-        int[] arr1 = {2, 4, 6, 8, 10, 12, 14, 16},
-              arr2 = {3, 6, 9, 12, 15, 18, 21, 24};
+        //int[] arr1 = {2, 4, 6, 8, 10, 12, 14, 16},
+        //      arr2 = {3, 6, 9, 12, 15, 18, 21, 24};
 
         // generate 2 random arrays
-        //int[] arr1 = getArray(input),
-        //      arr2 = getArray(input);
+        int[] arr1 = getArray(),
+              arr2 = getArray();
 
-        input.close();
 
         // the randomly generated arrays are very unlikely to pass this test.
         if (isSortedAscend(arr1) && isSortedAscend(arr2))
@@ -69,13 +65,12 @@ public class ArraysExercise {
      * Question 1
      * Write a method named getArray that asks user to input the array size n, then initializes
      * an array of n integers from user input and returns the array.
-     * @param input
      * @return
      */
-    public static int[] getArray(Scanner input) {
+    public static int[] getArray() {
 
         // get size
-        int size = getSize(input);
+        int size = getSize();
         
         // create an array that counts up to size
         int[] array = new int[size];
@@ -83,13 +78,15 @@ public class ArraysExercise {
         //fill up the array
         for (int i = 1; i <= size; i++) {
 
-            int pos = i - 1;
+            int pos = i - 1; 
+
+            // either fill up with incremented numbers, or randomly generated ones:
 
             // fill up with incremented numbers (starting at 1):
-            //array[pos] = i;
+            array[pos] = i;
 
             // fill up with random numbers (between 1 and 100):
-            array[pos] = (int)(1 + Math.random() * 100);
+            //array[pos] = (int)(1 + Math.random() * 100);
         }
 
         return array;
@@ -99,7 +96,10 @@ public class ArraysExercise {
      * @param input
      * @return
      */
-    public static int getSize(Scanner input) {
+    public static int getSize() {
+
+            // create scanner obj
+            Scanner input = new Scanner(System.in);
 
             // prompt user
             System.out.print("Please enter an array size(positive integer): ");
@@ -109,7 +109,7 @@ public class ArraysExercise {
         
             // check if size is valid
             if (!(size == (int)size) || size < 1)
-                return getSize(input);
+                return getSize();
 
             return size;
     }
@@ -253,6 +253,9 @@ public class ArraysExercise {
         return true;
     }
     /**
+     * 
+     * This might need some work, void?
+     * 
      * Question 9
      * Write a method named swapNeighbor that given an array, it compares every two
      * neighbor numbers in the array (eg. A[i] and A[i+1]) and swaps them if A[i] is more than A[i+1].
@@ -261,7 +264,7 @@ public class ArraysExercise {
      * array must be changed to {9, 12, 7, 3, 15}.
      * @param array
      */
-    public static int[] swapNeighbor(int[] array) {
+    public static int[] swapNeighbour(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
 
