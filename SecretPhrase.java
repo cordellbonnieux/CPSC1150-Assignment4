@@ -4,9 +4,11 @@ public class SecretPhrase {
 
         // make a phrase
         String secretPhrase = getPhrase();
+        System.out.println("the secret phrase is: " + secretPhrase); // testing
 
         // make a hidden phrase version
         String phrase = scramblePhrase(secretPhrase);
+        System.out.println("the scrambled phrase is: " + phrase); // testing
 
         // triggers when phrase == secret phrase
         Boolean complete = false;
@@ -17,11 +19,22 @@ public class SecretPhrase {
         while (!complete) {
 
             if (secretPhrase != phrase) {
+                
+                // read a guess from the user
+                char userGuess = guess(phrase, counter);
+
+                // if guess is valid, update the phrase
+                phrase = checkPhrase(phrase, secretPhrase, userGuess);
+
+                // count the rounds
+                counter++;  
 
             } else
                 complete = true;
-
         }
+        System.out.println("the secret phrase is: " + secretPhrase); // testing
+        System.out.println("the scrambled phrase is: " + phrase); // testing
+        System.out.println("number of rounds: " + counter); // testing
 
     }
     public static String getPhrase() {
@@ -31,7 +44,10 @@ public class SecretPhrase {
 
         return phrase;
     }
-    public static char guess() {
+    public static char guess(String phrase, int counter) {
+
+        // prompt user
+        System.out.println("Round #" + counter + ": Guess a letter to complete this sentence: \n" + phrase);
 
         // scanner obj
         Scanner scan = new Scanner(System.in);
@@ -39,9 +55,21 @@ public class SecretPhrase {
         // read a char
         char guess = scan.next().charAt(0);
 
-        // make sure guess is not an integer
-        if (guess == (int)guess || guess == (double)guess)
-            return guess();
+        // make sure guess is not a number
+        if (guess == (int)guess || guess == (double)guess){
+
+            System.out.println("Your guess was a number, please enter a letter.");
+            return guess(phrase, counter);
+        }
+
+        // make sure the guess is not already revealed
+        for (int i = 0; i < phrase.length(); i++) {
+            if (phrase.charAt(i) == guess) {
+
+                System.out.println("That letter is already revealed, pick a new letter.");
+                return guess(phrase, counter);
+            }
+        }
 
         return guess;
     }
@@ -69,6 +97,20 @@ public class SecretPhrase {
             }
         }
         return copy;
+    }
+
+    public static String checkPhrase(String phrase, String secretPhrase, char userGuess) {
+
+        String copy = phrase;
+
+        for (int i = 0; i < phrase.length(); i++) {
+            if (copy.charAt(i) == '*' && secretPhrase.charAt(i) == userGuess)
+                phrase += userGuess;
+            else
+                phrase += copy.charAt(i);
+        }
+
+        return phrase;
     }
 
 }
