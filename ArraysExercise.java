@@ -65,7 +65,7 @@ public class ArraysExercise {
      * Question 1
      * Write a method named getArray that asks user to input the array size n, then initializes
      * an array of n integers from user input and returns the array.
-     * @return
+     * @return and array of integers
      */
     public static int[] getArray() {
 
@@ -93,8 +93,8 @@ public class ArraysExercise {
     }
     /**
      * Question 1
-     * @param input
-     * @return
+     * Read an integer from the user
+     * @return an integer read from user
      */
     public static int getSize() {
 
@@ -117,7 +117,7 @@ public class ArraysExercise {
      * Question 2
      * Write a method named printArray that given an array of integers, prints the array
      * in a tabular format with 5 number in each line.
-     * @param array
+     * @param array an array of inetegers
      */
     public static void printArray(int[] array) {
 
@@ -140,8 +140,8 @@ public class ArraysExercise {
      * Question 3
      * Write a method named findMax that given an array of integers finds and returns the
      * maximum value in the array.
-     * @param array
-     * @return
+     * @param array of inetegers
+     * @return the largest number in the array
      */
     public static int findMax(int[] array) {
 
@@ -161,7 +161,7 @@ public class ArraysExercise {
      * Write a method named findMin that given an array of integers finds and returns the
      * minimum value in the array.
      * @param array
-     * @return
+     * @return the smallest inetger in the array
      */
     public static int findMin(int[] array) {
 
@@ -180,7 +180,7 @@ public class ArraysExercise {
      * Write a method named findMaxIndex that given an array of integers finds and
      * returns the index of maximum value in the array.
      * @param array
-     * @return
+     * @return the index of the largest number in the array
      */
     public static int findMaxIndex(int[] array) {
 
@@ -201,7 +201,7 @@ public class ArraysExercise {
      * Write a method named findMinIndex that given an array of integers finds and
      * returns the index of minimum value in the array.
      * @param array
-     * @return
+     * @return the index of the smallest number in the array
      */
     public static int findMinIndex(int[] array) {
 
@@ -222,7 +222,7 @@ public class ArraysExercise {
      * Write a method named isSortedAscend that given an array of integers, it checks
      * whether array is sorted in ascending order, and returns true or false correspondingly.
      * @param array
-     * @return
+     * @return true if the array is in acending order, false otherwise
      */
     public static Boolean isSortedAscend(int[] array) {
 
@@ -240,7 +240,7 @@ public class ArraysExercise {
      * Write a method named isSortedDescend that given an array of integers, it checks
      * whether array is sorted in descending order, and returns true or false correspondingly.
      * @param array
-     * @return
+     * @return true is the array is in descending order, false otherwise
      */
     public static Boolean isSortedDescend(int[] array) {
 
@@ -263,6 +263,7 @@ public class ArraysExercise {
      * For example, for the given array {12, 9, 15, 7, 3}, as the result of calling swapNeighbor, the
      * array must be changed to {9, 12, 7, 3, 15}.
      * @param array
+     * @return the swaped/modified array
      */
     public static int[] swapNeighbour(int[] array) {
 
@@ -289,7 +290,7 @@ public class ArraysExercise {
      * sorted either.
      * @param array1
      * @param array2
-     * @return
+     * @return a new array with the contents of array1 and array2 (in ascending order)
      */
     public static int[] merge(int[] a, int[] b) {
         
