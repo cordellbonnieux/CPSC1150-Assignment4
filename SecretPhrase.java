@@ -237,8 +237,8 @@ public class SecretPhrase {
         String copy = "";
 
         for (int i = 0; i < phrase.length(); i++) {
-            if (phrase.charAt(i) == '*' && secretPhrase.charAt(i) == userGuess)
-                copy += userGuess;
+            if (phrase.charAt(i) == '*' && Character.toLowerCase(secretPhrase.charAt(i)) == Character.toLowerCase(userGuess))
+                copy += secretPhrase.charAt(i);
             else
                 copy += phrase.charAt(i);
         }
