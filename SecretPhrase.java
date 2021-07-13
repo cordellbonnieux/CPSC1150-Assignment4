@@ -60,29 +60,28 @@ public class SecretPhrase {
 
         // All phrases are quoted from Arnold Schwarzenegger (from various movies)
 
-        // placeholder phrase
-        String phrase = "Stick Around.";
+        String phrase = "";
 
         switch(choice) {
             case 1: phrase = "Consider that a divorce.";
                 break;
-            case 2: phrase = "Let off some steam, Bennett.";
+            case 2: phrase = "Let off some steam, Bennet.";
                 break;
-            case 3: phrase = "I eat green berets for breakfast. And right now I'm very hungry.";
+            case 3: phrase = "I eat green berets for breakfast, and right now I'm very hungry.";
                 break;
-            case 4: phrase = "You’re Luggage.";
+            case 4: phrase = "You're Luggage.";
                 break;
-            case 5: phrase = "You Are Terminated.";
+            case 5: phrase = "You are terminated.";
                 break;
-            case 6: phrase = "No Sequel For You.";
+            case 6: phrase = "No sequel for you.";
                 break;
-            case 7: phrase = "Hey, Claudius. You Killed My Father. Big Mistake.";
+            case 7: phrase = "Hey, Claudius. You killed my father. Big mistake!";
                 break;
-            case 8: phrase = "Freeze In Hell, Batman!";
+            case 8: phrase = "Freeze in hell Batman!";
                 break;
-            case 9: phrase = "Hey, Killian! Here Is Subzero! Now… Plain Zero!";
+            case 9: phrase = "Hey, Killian! Here is Subzero! Now... Plain zero!";
                 break;
-            case 10: phrase = "See You At The Party, Richter.";
+            case 10: phrase = "See you at the party, Richter.";
                 break;
         }
 
@@ -116,7 +115,6 @@ public class SecretPhrase {
         // make sure guess is not a number
         Boolean isDigit = Character.isDigit(guess);
         if (isDigit){
-            //System.out.println("Your guess was a number, please enter a letter.");
             JOptionPane.showMessageDialog(null, "Your guess was a number, please enter a letter.");
 
             return guess(phrase, counter);
@@ -125,8 +123,6 @@ public class SecretPhrase {
         // make sure the guess is not already revealed
         for (int i = 0; i < phrase.length() - 1; i++) {
             if (phrase.charAt(i) == guess) {
-
-                //System.out.println("That letter is already revealed, pick a new letter.");
                 JOptionPane.showMessageDialog(null, "That letter is already revealed, pick a new letter.");
 
                 return guess(phrase, counter);
@@ -177,8 +173,8 @@ public class SecretPhrase {
         // count the number of spaces and punctuation marks in the phrase
         int spaces = 0;
         for (int i = 0; i < phrase.length(); i++) {
-        if (phrase.charAt(i) == ' ' || phrase.charAt(i) == ',' || phrase.charAt(i) == '.' || phrase.charAt(i) == '!')
-            spaces++;
+            if (phrase.charAt(i) == ' ' || phrase.charAt(i) == ',' || phrase.charAt(i) == '.' || phrase.charAt(i) == '!')
+                spaces++;
         }
         
         // create an array which indexes the spaces and punctuation
@@ -211,14 +207,18 @@ public class SecretPhrase {
         while (i < scrambleIndex.length) {
         
             // select a random index
-            int pos = (int)(Math.random() * (phrase.length() - 0)) + 0;
+            //int pos = (int)(Math.random() * (phrase.length() - 0)) + 0;
+            int pos = new Random().nextInt(phrase.length());
 
             // check if the pos has any duplicate letters
             int duplicateCounter = 0;
             for (int y = 0; y < phrase.length(); y++) {
+                char a = Character.toLowerCase(phrase.charAt(y)),
+                    b = Character.toLowerCase(phrase.charAt(pos));
+
                 if (phrase.charAt(y) == ' ' || phrase.charAt(y) == ',' || phrase.charAt(y) == '.' || phrase.charAt(y) == '!')
                     continue;
-                else if (Character.toLowerCase(phrase.charAt(y)) == Character.toLowerCase(phrase.charAt(pos)) && y != pos)
+                else if (a == b && y != pos)
                     duplicateCounter++;
             }
 
@@ -229,9 +229,12 @@ public class SecretPhrase {
             int[] duplicates = new int[duplicateCounter];
             int d = 0;
             for (int y = 0; y < phrase.length(); y++) {
+                char a = Character.toLowerCase(phrase.charAt(y)),
+                    b = Character.toLowerCase(phrase.charAt(pos));
+
                 if (phrase.charAt(y) == ' ' || phrase.charAt(y) == ',' || phrase.charAt(y) == '.' || phrase.charAt(y) == '!')
                     continue;
-                else if (Character.toLowerCase(phrase.charAt(y)) == Character.toLowerCase(phrase.charAt(pos)) && y != pos) {
+                else if (a == b && y != pos) {
                     duplicates[d] = y;
                     d++;
                 }
@@ -279,7 +282,7 @@ public class SecretPhrase {
         String copy = "";
 
         for (int i = 0; i < phrase.length(); i++) {
-            if (phrase.charAt(i) == '*' && Character.toLowerCase(secretPhrase.charAt(i)) == Character.toLowerCase(userGuess))
+            if (phrase.charAt(i) == '*' && Character.toLowerCase(((char)secretPhrase.charAt(i))) == Character.toLowerCase((char)userGuess))
                 copy += secretPhrase.charAt(i);
             else
                 copy += phrase.charAt(i);
@@ -287,6 +290,7 @@ public class SecretPhrase {
 
         return copy;
     }
+
     /**
      * Calculates and displays the users score, the secret phrase and the number of tries.
      * @param secretPhrase the phrase that was deciphered
