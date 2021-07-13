@@ -36,6 +36,7 @@ public class SecretPhrase {
 
             }
         }
+
         System.out.println("the secret phrase is: " + secretPhrase); // testing
         System.out.println("the scrambled phrase is: " + phrase); // testing
         System.out.println("number of rounds: " + counter); // testing
@@ -43,8 +44,35 @@ public class SecretPhrase {
     }
     public static String getPhrase() {
 
+        int choice = (int)(Math.random() * (10 - 1)) + 1;
+
+        // All phrases are quoted from Arnold Schwarzenegger (from various movies)
+
         // placeholder phrase
-        String phrase = "Hey there buddy";
+        String phrase = "Stick Around.";
+
+        switch(choice) {
+            case 1: phrase = "Consider that a divorce.";
+                break;
+            case 2: phrase = "Let off some steam, Bennett.";
+                break;
+            case 3: phrase = "I eat green berets for breakfast. And right now I'm very hungry.";
+                break;
+            case 4: phrase = "You’re Luggage.";
+                break;
+            case 5: phrase = "You Are Terminated.";
+                break;
+            case 6: phrase = "No Sequel For You.";
+                break;
+            case 7: phrase = "Hey, Claudius. You Killed My Father. Big Mistake.";
+                break;
+            case 8: phrase = "Freeze In Hell, Batman!";
+                break;
+            case 9: phrase = "Hey, Killian! Here Is Subzero! Now… Plain Zero!";
+                break;
+            case 10: phrase = "See You At The Party, Richter.";
+                break;
+        }
 
         return phrase;
     }
@@ -148,8 +176,9 @@ public class SecretPhrase {
             for (int y = 0; y < phrase.length(); y++) {
                 if (phrase.charAt(y) == ' ' || phrase.charAt(y) == ',' || phrase.charAt(y) == '.' || phrase.charAt(y) == '!')
                     continue;
-                else if (phrase.charAt(y) == phrase.charAt(pos) && y != pos)
+                else if (Character.toLowerCase(phrase.charAt(y)) == Character.toLowerCase(phrase.charAt(pos)) && y != pos)
                     duplicateCounter++;
+                    System.out.println("in the duplicate counter the character " + phrase.charAt(y) + ", at position " + y + " has " + duplicateCounter + " duplicates."); // testing
             }
 
         System.out.println("letter @ pos = " + phrase.charAt(pos) + ", number of duplicates = " + duplicateCounter); // testing
@@ -163,7 +192,7 @@ public class SecretPhrase {
             for (int y = 0; y < phrase.length(); y++) {
                 if (phrase.charAt(y) == ' ' || phrase.charAt(y) == ',' || phrase.charAt(y) == '.' || phrase.charAt(y) == '!')
                     continue;
-                else if (phrase.charAt(y) == phrase.charAt(pos) && y != pos) {
+                else if (Character.toLowerCase(phrase.charAt(y)) == Character.toLowerCase(phrase.charAt(pos)) && y != pos) {
                     duplicates[d] = y;
                     d++;
                 System.out.println("position " + y + " of phrase stored in duplicates array (representing '" + phrase.charAt(y) + "')"); // testing
@@ -187,15 +216,16 @@ public class SecretPhrase {
             if (duplicateCounter > 0 && valid && (duplicates.length + 1) < (scrambleIndex.length - i)) {
                 scrambleIndex[i] = pos;
                 i++;
+                System.out.println(pos + "added to final scramble list"); // testing
                 for (int y = 0; y < duplicates.length; y++) {
                     scrambleIndex[i] = duplicates[y];
                     i++;
-                System.out.println("index " + y + " added to final scramble list"); // testing
+                System.out.println(duplicates[y] + " added to final scramble list"); // testing
                 }
             } else if (valid) {
                 scrambleIndex[i] = pos;
                 i++;
-                System.out.println("index " + pos + " added to final scramble list"); // testing
+                System.out.println(pos + " added to final scramble list"); // testing
             }
         }
 
