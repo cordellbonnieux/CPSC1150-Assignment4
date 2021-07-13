@@ -118,16 +118,20 @@ public class SecretPhrase {
      */
     public static char guess(String phrase, int counter) {
 
-        // prompt user
-        //System.out.print("Round #" + counter + ": Guess a letter to complete this sentence: '" + phrase + "' :");
+        JPanel box = new JPanel();
+        box.setLayout(new BoxLayout(box,BoxLayout.Y_AXIS));
 
-        char guess = JOptionPane.showInputDialog(null, "Round #" + counter + ": Guess a letter to complete this sentence: '" + phrase).charAt(0);
+        JLabel prompt = new JLabel(String.format("Round #" + counter + ": Guess a letter to complete this sentence:"));
+        JPanel promptP = new JPanel();
+        promptP.add(prompt);
+        box.add(promptP);
 
-        // scanner obj
-        //Scanner scan = new Scanner(System.in);
+        JLabel quote = new JLabel(String.format(phrase));
+        JPanel quoteP = new JPanel();
+        quoteP.add(quote);
+        box.add(quoteP);
 
-        // read a char
-        // char guess = scan.next().charAt(0);
+        char guess = JOptionPane.showInputDialog(null, box).charAt(0);
 
         // make sure guess is not a number
         Boolean isDigit = Character.isDigit(guess);
