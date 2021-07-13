@@ -1,6 +1,6 @@
 import java.util.*;
+import javax.swing.*;
 import java.lang.*;
-import java.swing.*;
 /**
  * CPSC 1150 W01
  * Assignment 4 part 2
@@ -14,11 +14,9 @@ public class SecretPhrase {
 
         // make a phrase
         String secretPhrase = getPhrase();
-        System.out.println("the secret phrase is: " + secretPhrase); // testing
 
         // make a hidden phrase version
         String phrase = scramblePhrase(secretPhrase, scrambleIndex(secretPhrase, spaces(secretPhrase)));
-        System.out.println("the scrambled phrase is: " + phrase); // testing
 
         // triggers when phrase == secret phrase
         Boolean complete = false;
@@ -46,10 +44,30 @@ public class SecretPhrase {
             }
         }
 
-        System.out.println("the secret phrase is: " + secretPhrase); // testing
-        System.out.println("the scrambled phrase is: " + phrase); // testing
-        System.out.println("number of rounds: " + counter); // testing
+        // calculate and display user score
+        int length = secretPhrase.length();
+        double score = length / counter;
+        JPanel summary = new JPanel();
+        summary.setLayout(new BoxLayout(summary,BoxLayout.Y_AXIS));
 
+        JLabel goodbye = new JLabel(String.format("Nice work, you found the secret phrase!"));
+        JPanel goodbyeP = new JPanel();
+        goodbyeP.add(goodbye); 
+        summary.add(goodbyeP);
+
+        JLabel secret = new JLabel(String.format(secretPhrase));
+        JPanel secretP = new JPanel();
+        secretP.add(secret);
+        summary.add(secretP);
+
+        JLabel results = new JLabel(String.format("Number of tries: %d; Length of phrase: %d; Score: %.2f", counter, length, score));
+        JPanel resultsP = new JPanel();
+        resultsP.add(results); 
+        summary.add(resultsP);
+
+        JOptionPane.showMessageDialog(null, summary);
+
+        System.exit(0);
     }
 
     /**
@@ -101,18 +119,22 @@ public class SecretPhrase {
     public static char guess(String phrase, int counter) {
 
         // prompt user
-        System.out.print("Round #" + counter + ": Guess a letter to complete this sentence: '" + phrase + "' :");
+        //System.out.print("Round #" + counter + ": Guess a letter to complete this sentence: '" + phrase + "' :");
+
+        char guess = JOptionPane.showInputDialog(null, "Round #" + counter + ": Guess a letter to complete this sentence: '" + phrase).charAt(0);
 
         // scanner obj
-        Scanner scan = new Scanner(System.in);
+        //Scanner scan = new Scanner(System.in);
 
         // read a char
-        char guess = scan.next().charAt(0);
+        // char guess = scan.next().charAt(0);
 
         // make sure guess is not a number
         Boolean isDigit = Character.isDigit(guess);
         if (isDigit){
-            System.out.println("Your guess was a number, please enter a letter.");
+            //System.out.println("Your guess was a number, please enter a letter.");
+            JOptionPane.showMessageDialog(null, "Your guess was a number, please enter a letter.");
+
             return guess(phrase, counter);
         }
 
@@ -120,7 +142,9 @@ public class SecretPhrase {
         for (int i = 0; i < phrase.length() - 1; i++) {
             if (phrase.charAt(i) == guess) {
 
-                System.out.println("That letter is already revealed, pick a new letter.");
+                //System.out.println("That letter is already revealed, pick a new letter.");
+                JOptionPane.showMessageDialog(null, "That letter is already revealed, pick a new letter.");
+
                 return guess(phrase, counter);
             }
         }
