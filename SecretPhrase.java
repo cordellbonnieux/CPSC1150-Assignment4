@@ -45,27 +45,7 @@ public class SecretPhrase {
         }
 
         // calculate and display user score
-        int length = secretPhrase.length();
-        double score = length / counter;
-        JPanel summary = new JPanel();
-        summary.setLayout(new BoxLayout(summary,BoxLayout.Y_AXIS));
-
-        JLabel goodbye = new JLabel(String.format("Nice work, you found the secret phrase!"));
-        JPanel goodbyeP = new JPanel();
-        goodbyeP.add(goodbye); 
-        summary.add(goodbyeP);
-
-        JLabel secret = new JLabel(String.format(secretPhrase));
-        JPanel secretP = new JPanel();
-        secretP.add(secret);
-        summary.add(secretP);
-
-        JLabel results = new JLabel(String.format("Number of tries: %d; Length of phrase: %d; Score: %.2f", counter, length, score));
-        JPanel resultsP = new JPanel();
-        resultsP.add(results); 
-        summary.add(resultsP);
-
-        JOptionPane.showMessageDialog(null, summary);
+        printSummary(secretPhrase, counter);
 
         System.exit(0);
     }
@@ -307,5 +287,33 @@ public class SecretPhrase {
 
         return copy;
     }
-
+    /**
+     * Calculates and displays the users score, the secret phrase and the number of tries.
+     * @param secretPhrase the phrase that was deciphered
+     * @param counter the amount of tries it took the user to decipher the phrase
+     */
+    public static void printSummary(String secretPhrase, int counter) {
+        // calculate and display user score
+        int length = secretPhrase.length();
+        double score = length / counter;
+        JPanel summary = new JPanel();
+        summary.setLayout(new BoxLayout(summary,BoxLayout.Y_AXIS));
+        
+        JLabel goodbye = new JLabel(String.format("Nice work, you found the secret phrase!"));
+        JPanel goodbyeP = new JPanel();
+        goodbyeP.add(goodbye); 
+        summary.add(goodbyeP);
+        
+        JLabel secret = new JLabel(String.format(secretPhrase));
+        JPanel secretP = new JPanel();
+        secretP.add(secret);
+        summary.add(secretP);
+        
+        JLabel results = new JLabel(String.format("Number of tries: %d; Length of phrase: %d; Score: %.2f", counter, length, score));
+        JPanel resultsP = new JPanel();
+        resultsP.add(results); 
+        summary.add(resultsP);
+        
+        JOptionPane.showMessageDialog(null, summary);
+    }
 }
