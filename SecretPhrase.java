@@ -1,5 +1,14 @@
 import java.util.*;
 import java.lang.*;
+import java.swing.*;
+/**
+ * CPSC 1150 W01
+ * Assignment 4 part 2
+ * Intructor: Dr. Bita Shadgar
+ * @author Cordell Bonnieux
+ * @date 07/12/2021
+ * Description: A classic game of hangman; user guesses a letter and the game keeps score.
+ */
 public class SecretPhrase {
     public static void main(String[] args) {
 
@@ -42,6 +51,11 @@ public class SecretPhrase {
         System.out.println("number of rounds: " + counter); // testing
 
     }
+
+    /**
+     * Selects one of ten random Arnold Schwarzenegger quotes to be used in the game.
+     * @return a random quote
+     */
     public static String getPhrase() {
 
         int choice = (int)(Math.random() * (10 - 1)) + 1;
@@ -76,6 +90,14 @@ public class SecretPhrase {
 
         return phrase;
     }
+
+    /**
+     * Reads a character from the user, ensures that it is valid (i.e. not a number) and that 
+     * it is not an already revealed.
+     * @param phrase the phrase to be deciphered
+     * @param counter counts which guess number it is currently
+     * @return the user's guess (a character)
+     */
     public static char guess(String phrase, int counter) {
 
         // prompt user
@@ -105,6 +127,14 @@ public class SecretPhrase {
 
         return guess;
     }
+
+    /**
+     * This program takes a phrase, and an array of indexs to scramble it with.
+     * Then it iterates over the phrase, replacing each index point with an asterik.
+     * @param phrase a phrase to be scrambled
+     * @param scrambleIndex the indexes of the letters to be scrambled
+     * @return a scrambled version of the phrase
+     */
     public static String scramblePhrase(String phrase, int[] scrambleIndex) {
 
         //hold the scrambled phrase
@@ -128,6 +158,12 @@ public class SecretPhrase {
         return copy;
     }
 
+    /**
+     * This method takes in a phrase and determines at what indexes it's
+     * punctuation and spaces are at. It then returns and array of those indexes.
+     * @param phrase the phrase to be examined
+     * @return and array of indexes that represent the punctuation marks and spaces in the phrase
+     */
     public static int[] spaces(String phrase) {
 
         // count the number of spaces and punctuation marks in the phrase
@@ -152,24 +188,22 @@ public class SecretPhrase {
         return spaceArr;
     }
 
+    /**
+     * This method determines which letters will be replaced with asteriks'.
+     * @param phrase a phrase to do calculations on
+     * @param spaceArr the indexes of the spaces and punctuation marks in the phrase
+     * @return an array of indexes which represent which letters to replace with asteriks'
+     */
     public static int[] scrambleIndex(String phrase, int[] spaceArr) {
-    System.out.println("ENTERED scrambleIndex ----------"); // testing
-
         // create a scramble index list
         int[] scrambleIndex = new int[(((phrase.length() - spaceArr.length) / 2))];
-
-    System.out.println("scrambleIndex array length = " + scrambleIndex.length); // testing
 
         // choose scramble indexes
         int i = 0;
         while (i < scrambleIndex.length) {
         
-        System.out.println("ENTERED while loop " + i); // testing
-
             // select a random index
             int pos = (int)(Math.random() * (phrase.length() - 0)) + 0;
-
-        System.out.println("random num pos = " + pos); // testing
 
             // check if the pos has any duplicate letters
             int duplicateCounter = 0;
@@ -178,10 +212,7 @@ public class SecretPhrase {
                     continue;
                 else if (Character.toLowerCase(phrase.charAt(y)) == Character.toLowerCase(phrase.charAt(pos)) && y != pos)
                     duplicateCounter++;
-                    System.out.println("in the duplicate counter the character " + phrase.charAt(y) + ", at position " + y + " has " + duplicateCounter + " duplicates."); // testing
             }
-
-        System.out.println("letter @ pos = " + phrase.charAt(pos) + ", number of duplicates = " + duplicateCounter); // testing
 
             // if the number of duplicates exceed the free space left in the array, break.
             if ((scrambleIndex.length - (i + 1)) <= duplicateCounter) break;
@@ -195,7 +226,6 @@ public class SecretPhrase {
                 else if (Character.toLowerCase(phrase.charAt(y)) == Character.toLowerCase(phrase.charAt(pos)) && y != pos) {
                     duplicates[d] = y;
                     d++;
-                System.out.println("position " + y + " of phrase stored in duplicates array (representing '" + phrase.charAt(y) + "')"); // testing
                 }
             }
 
@@ -216,22 +246,26 @@ public class SecretPhrase {
             if (duplicateCounter > 0 && valid && (duplicates.length + 1) < (scrambleIndex.length - i)) {
                 scrambleIndex[i] = pos;
                 i++;
-                System.out.println(pos + "added to final scramble list"); // testing
                 for (int y = 0; y < duplicates.length; y++) {
                     scrambleIndex[i] = duplicates[y];
                     i++;
-                System.out.println(duplicates[y] + " added to final scramble list"); // testing
                 }
             } else if (valid) {
                 scrambleIndex[i] = pos;
                 i++;
-                System.out.println(pos + " added to final scramble list"); // testing
             }
         }
 
         return scrambleIndex;
     }
 
+    /**
+     * This method checks to see if the user guessed a correct letter.
+     * @param phrase the phrase to be deciphered
+     * @param secretPhrase the deciphered phrase
+     * @param userGuess the user's guess (a character)
+     * @return the updated phrase (if user guessed correctly, the same phrase if not)
+     */
     public static String checkPhrase(String phrase, String secretPhrase, char userGuess) {
 
         String copy = "";
