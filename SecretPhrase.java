@@ -282,7 +282,11 @@ public class SecretPhrase {
         String copy = "";
 
         for (int i = 0; i < phrase.length(); i++) {
-            if (phrase.charAt(i) == '*' && Character.toLowerCase(((char)secretPhrase.charAt(i))) == Character.toLowerCase((char)userGuess))
+
+            char a = Character.toLowerCase(secretPhrase.charAt(i)),
+            b = Character.toLowerCase(userGuess);
+
+            if (phrase.charAt(i) == '*' && a == b)
                 copy += secretPhrase.charAt(i);
             else
                 copy += phrase.charAt(i);
